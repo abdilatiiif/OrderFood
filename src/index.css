@@ -53,8 +53,9 @@ h1 {
 }
 
 .form input,
-select {
-  @apply max-w-58 bg-white mb-10 h-11;
+select,
+textarea {
+  @apply max-w-58 bg-white mb-10 h-11 p-2;
 }
 
 .order,
