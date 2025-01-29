@@ -3,6 +3,7 @@ import "./data";
 import Button from "./components/Button";
 import { useState } from "react";
 import OrderForm from "./components/OrderForm";
+import OrderList from "./components/OrderList";
 
 function App() {
   const [showMenu, setShowMenu] = useState(false);
@@ -14,12 +15,8 @@ function App() {
   }
 
   function showOrderFormHandler() {
-    console.log("Order form");
     setOrderForm((show) => !show);
   }
-
-  console.log("showMenu", showMenu);
-  console.log("orderForm", orderForm);
 
   return (
     <>
@@ -37,8 +34,10 @@ function App() {
           Show Menu ⌄{" "}
         </Button>
       </div>
-      {orderForm && <OrderForm />}
+      {orderForm && <OrderForm orderForm={orderForm} />}
       {showMenu && <Menu />}
+
+      <OrderList />
     </>
   );
 }
