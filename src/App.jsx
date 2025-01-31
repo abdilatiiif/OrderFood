@@ -7,7 +7,7 @@ import OrderList from "./components/OrderList";
 
 function App() {
   const [showMenu, setShowMenu] = useState(false);
-
+  const [orderList, setOrderList] = useState([]);
   const [orderForm, setOrderForm] = useState(true);
 
   function showMenuHandler() {
@@ -16,6 +16,10 @@ function App() {
 
   function showOrderFormHandler() {
     setOrderForm((show) => !show);
+  }
+
+  function handleGetOrder(order) {
+    setOrderList((prevOrderList) => [...prevOrderList, order]);
   }
 
   return (
@@ -34,10 +38,19 @@ function App() {
           Show Menu ⌄{" "}
         </Button>
       </div>
-      {orderForm && <OrderForm orderForm={orderForm} />}
+      {orderForm && (
+        <OrderForm orderForm={orderForm} getOrder={handleGetOrder} />
+      )}
       {showMenu && <Menu />}
 
-      <OrderList />
+      {orderList && (
+        <div className="order--list border-green-300 border-2 p-2">
+          <h2 className="text-3xl text-center">Upcomming Orders </h2>
+          {orderList.map((order) => (
+            <OrderList key={order.id} order={order} />
+          ))}
+        </div>
+      )}
     </>
   );
 }

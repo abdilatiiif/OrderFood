@@ -1,6 +1,7 @@
+/* eslint-disable react/prop-types */
 import React from "react";
 
-export default function OrderForm({ orderForm }) {
+export default function OrderForm({ orderForm, getOrder }) {
   let [status, setStatus] = React.useState("");
 
   const [showForm, setShowForm] = React.useState(orderForm);
@@ -17,8 +18,6 @@ export default function OrderForm({ orderForm }) {
     const image = "https://i.pravatar.cc/48";
     const id = crypto.randomUUID();
 
-    console.log(id, image);
-
     const order = {
       fullname: formData.get("fullname"),
       email: formData.get("email"),
@@ -31,10 +30,12 @@ export default function OrderForm({ orderForm }) {
       time: formData.get("time"),
       dateInput: formData.get("date-input"),
       status: formData.get("status"),
+      notat: formData.get("notat"),
       image: `${image}?=${id}`,
     };
 
-    console.log(order);
+    getOrder(order);
+    setShowForm(false);
   }
 
   return (
@@ -146,8 +147,8 @@ export default function OrderForm({ orderForm }) {
               {status}
             </p>{" "}
           </labe>
-          <input required type="time" name="time" value="13:30" />
-          <input required type="date" name="date-input" value="2049-04-12" />
+          <input required type="time" name="time" />
+          <input required type="date" name="date-input" />
 
           <button
             className=" bg-green-400 h-14 rounded-2xl text-2xl"
