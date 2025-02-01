@@ -35,7 +35,7 @@ function App() {
         </Button>
         <Button btnName={"show--menu"} onClick={showMenuHandler}>
           {" "}
-          Show Menu ⌄{" "}
+          {showMenu ? "Close menu" : "Show menu"} ⌄{" "}
         </Button>
       </div>
       {orderForm && (
